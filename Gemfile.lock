@@ -1,0 +1,31 @@
+PATH
+  remote: .
+  specs:
+    openpull (0.0.1)
+      colorize
+      faraday-http-cache
+      octokit
+      terminal-table
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.6)
+    colorize (0.7.5)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    faraday-http-cache (0.4.2)
+      faraday (~> 0.8)
+    multipart-post (2.0.0)
+    octokit (3.7.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
+    terminal-table (1.4.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  openpull!
