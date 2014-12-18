@@ -7,9 +7,9 @@ module OpenPull
       title[0, 80] + '...'
     end
 
-    def user
-      user = super.login
-      user == __getobj__.username ? user.blue : user
+    def user(other)
+      user = super().login
+      user == other ? user.blue : user
     end
 
     def labels
