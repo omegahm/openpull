@@ -2,16 +2,16 @@ PATH
   remote: .
   specs:
     openpull (0.0.1)
-      colorize
-      faraday-http-cache
-      octokit
-      terminal-table
+      colorize (~> 0.7)
+      faraday-http-cache (~> 0.4)
+      octokit (~> 3.7)
+      terminal-table (~> 1.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
-    colorize (0.7.5)
+    colorize (0.7.3)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     faraday-http-cache (0.4.2)
