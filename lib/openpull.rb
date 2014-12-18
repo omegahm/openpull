@@ -9,5 +9,7 @@ require 'openpull/pull_request_decorator'
 require 'openpull/pull_request_fetcher'
 require 'openpull/table'
 
+require 'openpull/version'
+
 module OpenPull
 end
