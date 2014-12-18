@@ -1,6 +1,8 @@
 OpenPull
 ========
 
+[![Gem Version](https://badge.fury.io/rb/openpull.svg)](http://badge.fury.io/rb/openpull)
+
 Fetches Open Pull-Requests for an Organisation from Github
 
 # Installation
