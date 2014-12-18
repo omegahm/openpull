@@ -11,7 +11,7 @@ module OpenPull
     def fetch
       client.org_repos(organisation).map do |repository|
         Thread.new { fetch_pull_requests(repository) }
-      end.map(&:value)
+      end.map(&:value).reject { |v| v.nil? || v.empty? }
     end
 
     private
