@@ -37,9 +37,15 @@ module OpenPull
 
       deco_pr = OpenPull::PullRequestDecorator.new(pr.rels[:self].get.data)
 
-      [deco_pr.title, deco_pr.user(username), deco_pr.labels,
-       deco_pr.status, deco_pr.mergeable, deco_pr.html_url,
-       deco_pr.updated_at]
+      [
+        deco_pr.title,
+        deco_pr.user(username),
+        deco_pr.labels,
+        deco_pr.status,
+        deco_pr.mergeable,
+        deco_pr.html_url,
+        deco_pr.updated_at
+      ]
     end
   end
 end
