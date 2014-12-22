@@ -25,7 +25,11 @@ module OpenPull
       header = ["#{repository.name} (#{pull_requests.size})".blue.bold]
       header += [''] * (OpenPull::Table::HEADINGS.size - 1)
 
-      [header] + pull_requests.map { |pr| row(pr) }
+      results = pull_requests.map do |pr|
+        Thread.new { row(pr) }
+      end.map(&:value)
+
+      [header] + results
     end
 
     def row(pr)
