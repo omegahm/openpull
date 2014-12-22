@@ -25,7 +25,11 @@ module OpenPull
       header = ["#{repository.name} (#{pull_requests.size})".blue.bold]
       header += [''] * (OpenPull::Table::HEADINGS.size - 1)
 
-      [header] + pull_requests.map { |pr| row(pr) }
+      results = pull_requests.map do |pr|
+        Thread.new { row(pr) }
+      end.map(&:value)
+
+      [header] + results
     end
 
     def row(pr)
@@ -33,9 +37,15 @@ module OpenPull
 
       deco_pr = OpenPull::PullRequestDecorator.new(pr.rels[:self].get.data)
 
-      [deco_pr.title, deco_pr.user(username), deco_pr.labels,
-       deco_pr.status, deco_pr.mergeable, deco_pr.html_url,
-       deco_pr.updated_at]
+      [
+        deco_pr.title,
+        deco_pr.user(username),
+        deco_pr.labels,
+        deco_pr.status,
+        deco_pr.mergeable,
+        deco_pr.html_url,
+        deco_pr.updated_at
+      ]
     end
   end
 end
