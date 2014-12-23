@@ -4,7 +4,7 @@ require 'openpull/version'
 Gem::Specification.new do |s|
   s.name = 'openpull'
   s.version = OpenPull::VERSION
-  s.date = '2014-12-17'
+  s.date = Date.today.to_s
   s.summary = 'Fetches Open Pull-Requests from Github'
   s.description = 'Fetches open pull-requests, with status and mergability, ' \
                   'in your organisation.'
