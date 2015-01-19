@@ -4,6 +4,7 @@ require 'colorize'
 require 'terminal-table'
 require 'delegate'
 
+require 'openpull/runner'
 require 'openpull/client'
 require 'openpull/pull_request_decorator'
 require 'openpull/pull_request_fetcher'
