@@ -22,14 +22,18 @@ module OpenPull
       pull_requests = client.pull_requests(repository.id, state: 'open')
       return [] if pull_requests.empty?
 
-      header = ["#{repository.name} (#{pull_requests.size})".blue.bold]
-      header += [''] * (OpenPull::Table::HEADINGS.size - 1)
+      headers = ["#{repository.name} (#{pull_requests.size})"]
+      headers << (repository.private ? 'private' : 'public')
+      headers += [''] * 3
+      headers << repository.html_url
+      headers << ''
+      headers.map! { |h| h.blue.bold }
 
       results = pull_requests.map do |pr|
         Thread.new { row(pr) }
       end.map(&:value)
 
-      [header] + results
+      [headers] + results
     end
 
     def row(pr)
@@ -43,7 +47,7 @@ module OpenPull
         deco_pr.labels,
         deco_pr.status,
         deco_pr.mergeable,
-        deco_pr.html_url,
+        deco_pr.html_url.underline,
         deco_pr.updated_at
       ]
     end
