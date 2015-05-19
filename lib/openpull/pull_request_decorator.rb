@@ -28,7 +28,7 @@ module OpenPull
       when 'pending'
         state.yellow
       else
-        '--'.red
+        (state || '--').red
       end
     end
 
