@@ -24,7 +24,7 @@ module OpenPull
 
       headers = ["#{repository.name} (#{pull_requests.size})"]
       headers << (repository.private ? 'private' : 'public')
-      headers += [''] * 3
+      headers += ['', '', '']
       headers << repository.html_url
       headers << ''
       headers.map! { |h| h.blue.bold }
@@ -39,7 +39,8 @@ module OpenPull
     def row(pr)
       print '.'.yellow
 
-      deco_pr = OpenPull::PullRequestDecorator.new(pr.rels[:self].get.data)
+      pr_data = pr.rels[:self].get.data
+      deco_pr = OpenPull::PullRequestDecorator.new(pr_data)
 
       [
         deco_pr.title,
