@@ -43,7 +43,8 @@ module OpenPull
     end
 
     def comments
-      num = rels[:review_comments].get.data.size
+      num = rels[:comments].get.data.size
+      num += rels[:review_comments].get.data.size
       num == 0 ? '' : num
     end
 
