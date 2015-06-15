@@ -2,10 +2,16 @@ require 'optparse'
 
 module OpenPull
   class Runner
+    class << self
+      def run(argv = [])
+        new(argv).run
+      end
+    end
+
     attr_reader :argv
     attr_accessor :options
 
-    def initialize(argv)
+    def initialize(argv = [])
       @argv    = argv
       @options = {}
     end

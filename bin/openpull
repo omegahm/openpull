@@ -1,3 +1,3 @@
 #!/usr/bin/env ruby
 require 'openpull'
-OpenPull::Runner.new(ARGV).run
+OpenPull::Runner.run(ARGV)
