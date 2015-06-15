@@ -1,5 +1,10 @@
 module OpenPull
   class PullRequestDecorator < ::SimpleDelegator
+    def as_row(username)
+      [title, user(username), labels, status, commits, comments, mergeable,
+       html_url.underline, updated_at]
+    end
+
     def title
       title = super
       return title if title.size <= 80

@@ -9,9 +9,11 @@ module OpenPull
     end
 
     def fetch
-      client.org_repos(organisation).map do |repository|
+      repos = client.org_repos(organisation).map do |repository|
         Thread.new { fetch_pull_requests(repository) }
-      end.map(&:value).reject { |v| v.nil? || v.empty? }
+      end.map(&:value)
+
+      repos.reject { |v| v.nil? || v.empty? }
     end
 
     private
@@ -47,17 +49,7 @@ module OpenPull
       print '.'.yellow
 
       pr_data = pr.rels[:self].get.data
-      deco_pr = OpenPull::PullRequestDecorator.new(pr_data)
-
-      [
-        deco_pr.title,
-        deco_pr.user(username),
-        deco_pr.labels,
-        deco_pr.status,
-        deco_pr.mergeable,
-        deco_pr.html_url.underline,
-        deco_pr.updated_at
-      ]
+      OpenPull::PullRequestDecorator.new(pr_data).as_row(username)
     end
   end
 end
