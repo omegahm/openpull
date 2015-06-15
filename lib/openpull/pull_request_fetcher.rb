@@ -22,18 +22,25 @@ module OpenPull
       pull_requests = client.pull_requests(repository.id, state: 'open')
       return [] if pull_requests.empty?
 
-      headers = ["#{repository.name} (#{pull_requests.size})"]
-      headers << (repository.private ? 'private' : 'public')
-      headers += ['', '', '']
-      headers << repository.html_url
-      headers << ''
-      headers.map! { |h| h.blue.bold }
-
       results = pull_requests.map do |pr|
         Thread.new { row(pr) }
       end.map(&:value)
 
-      [headers] + results
+      [headers(repository, results.size)] + results
+    end
+
+    def headers(repository, size)
+      visibility = repository.private ? 'private' : 'public'
+
+      [
+        "#{repository.name} (#{size})",
+        visibility
+      ] +
+        [''] * 5 +
+        [
+          repository.html_url,
+          ''
+        ].map { |h| h.blue.bold }
     end
 
     def row(pr)

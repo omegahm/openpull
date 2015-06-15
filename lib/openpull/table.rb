@@ -1,6 +1,8 @@
 module OpenPull
   class Table
-    HEADINGS = %w(title user labels status mergeable url updated)
+    HEADINGS = %w(
+      title user labels status commits comments mergeable url updated
+    )
 
     class << self
       def rewind!

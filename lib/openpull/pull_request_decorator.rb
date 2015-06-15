@@ -32,6 +32,16 @@ module OpenPull
       end
     end
 
+    def commits
+      num = rels[:commits].get.data.size
+      num == 0 ? '' : num
+    end
+
+    def comments
+      num = rels[:review_comments].get.data.size
+      num == 0 ? '' : num
+    end
+
     def mergeable
       super ? 'Yes'.green : 'No'.red
     end
