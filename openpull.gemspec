@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'colorize', '~> 0.7'
   s.add_dependency 'terminal-table', '~> 1.4'
   s.add_dependency 'faraday-http-cache', '~> 0.4'
+
+  s.add_development_dependency 'rubocop', '~> 0.31'
 end

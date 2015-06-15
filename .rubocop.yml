@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+Metrics/LineLength:
+  Max: 80
+
+Style/Documentation: # No need to write documentation for every module and class
+  Enabled: false
