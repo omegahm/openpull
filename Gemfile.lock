@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openpull (0.0.7)
+    openpull (0.0.8)
       colorize (~> 0.7)
       faraday-http-cache (~> 0.4)
       octokit (~> 3.7)
