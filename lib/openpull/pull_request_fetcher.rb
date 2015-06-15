@@ -32,17 +32,16 @@ module OpenPull
     end
 
     def headers(repository, size)
-      visibility = repository.private ? 'private' : 'public'
-
-      [
+      head = [
         "#{repository.name} (#{size})",
-        visibility
-      ] +
-        [''] * 5 +
-        [
-          repository.html_url,
-          ''
-        ].map { |h| h.blue.bold }
+        repository.private ? 'private' : 'public'
+      ]
+      head += [''] * 5
+      head += [
+        repository.html_url,
+        ''
+      ]
+      head.map { |h| h.blue.bold }
     end
 
     def row(pr)
