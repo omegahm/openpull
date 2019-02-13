@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OpenPull
   class PullRequestFetcher
     attr_reader :client, :organisation, :username
@@ -24,8 +26,8 @@ module OpenPull
       pull_requests = client.pull_requests(repository.id, state: 'open')
       return [] if pull_requests.empty?
 
-      results = pull_requests.map do |pr|
-        Thread.new { row(pr) }
+      results = pull_requests.map do |pull_request|
+        Thread.new { row(pull_request) }
       end.map(&:value)
 
       [headers(repository, results.size)] + results
@@ -44,11 +46,12 @@ module OpenPull
       head.map { |h| h.blue.bold }
     end
 
-    def row(pr)
+    def row(pull_request)
       print '.'.yellow
 
-      pr_data = pr.rels[:self].get.data
-      OpenPull::PullRequestDecorator.new(pr_data).as_row(username)
+      OpenPull::PullRequestDecorator.new(
+        pull_request.rels[:self].get.data
+      ).as_row(username)
     end
   end
 end

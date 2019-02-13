@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'optparse'
 
 module OpenPull
@@ -84,24 +86,26 @@ module OpenPull
       end
     end
 
-    def check_options(op)
+    def check_options(option)
       check_access_token
-      check_organisation(op)
+      check_organisation(option)
     end
 
     def check_access_token
       @options[:access_token] = ENV['GITHUB_ACCESS_TOKEN']
       return unless @options[:access_token].nil?
+
       puts 'You need to set the GitHub access token in your environment. ' \
            '(GITHUB_ACCESS_TOKEN)'
       exit
     end
 
-    def check_organisation(op)
+    def check_organisation(option)
       return unless @options[:organisation].nil?
+
       puts 'You need to either pass GitHub organisation or set it in your ' \
            'environment. (GITHUB_ORGANISATION)'
-      puts "\n#{op}"
+      puts "\n#{option}"
       exit
     end
   end

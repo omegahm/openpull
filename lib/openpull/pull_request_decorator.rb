@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OpenPull
   class PullRequestDecorator < ::SimpleDelegator
     def as_row(username)
@@ -39,13 +41,13 @@ module OpenPull
 
     def commits
       num = rels[:commits].get.data.size
-      num == 0 ? '' : num
+      num.zero? ? '' : num
     end
 
     def comments
       num = rels[:comments].get.data.size
       num += rels[:review_comments].get.data.size
-      num == 0 ? '' : num
+      num.zero? ? '' : num
     end
 
     def mergeable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OpenPull
   class Client
     attr_reader :octokit_client, :organisation, :username
